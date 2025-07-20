@@ -1,0 +1,56 @@
+{
+  "name": "booking-scraper",
+  "version": "1.0.0",
+  "description": "Educational web scraper with ethical constraints for learning purposes",
+  "type": "middleware",
+  "config": {
+    "enableScraper": false,
+    "rateLimit": {
+      "maxRequests": 5,
+      "windowMs": 60000
+    },
+    "userAgent": "EducationalScraper/1.0 (+https://github.com/educational-scraper)",
+    "respectRobotsTxt": true,
+    "minDelay": 3000,
+    "maxConcurrentRequests": 1
+  },
+  "security": {
+    "requireAuth": true,
+    "logRequests": true,
+    "preventAbuse": true
+  },
+  "educational": {
+    "purpose": "Learning web scraping ethics and techniques",
+    "restrictions": [
+      "No actual scraping of booking.com or similar sites without permission",
+      "Mock data only for demonstration",
+      "Rate limiting enforced",
+      "Robots.txt compliance required"
+    ],
+    "guidelines": [
+      "Always check and respect robots.txt",
+      "Implement proper delays between requests",
+      "Use appropriate User-Agent headers",
+      "Monitor and limit concurrent requests",
+      "Log all scraping activities",
+      "Prefer official APIs when available"
+    ]
+  },
+  "endpoints": {
+    "/scraper/educational": {
+      "method": "POST",
+      "description": "Educational scraping simulation with mock data",
+      "requires": ["url"],
+      "rateLimit": true
+    },
+    "/scraper/stats": {
+      "method": "GET", 
+      "description": "View scraper statistics and configuration",
+      "auth": true
+    },
+    "/scraper/help": {
+      "method": "GET",
+      "description": "Get scraper documentation and ethical guidelines"
+    }
+  }
+}

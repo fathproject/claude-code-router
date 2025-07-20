@@ -6,6 +6,7 @@ import { initConfig, initDir } from "./utils";
 import { createServer } from "./server";
 import { router } from "./utils/router";
 import { apiKeyAuth } from "./middleware/auth";
+import { scraperMiddleware } from "./utils/scraper";
 import {
   cleanupPidFile,
   isServiceRunning,
@@ -94,6 +95,16 @@ async function run(options: RunOptions = {}) {
     },
   });
   server.addHook("preHandler", apiKeyAuth(config));
+  server.addHook("preHandler", scraperMiddleware({
+    enableScraper: config.ENABLE_SCRAPER || false,
+    rateLimit: {
+      maxRequests: config.SCRAPER_RATE_LIMIT || 5,
+      windowMs: 60000
+    },
+    respectRobotsTxt: true,
+    minDelay: 3000,
+    maxConcurrentRequests: 1
+  }));
   server.addHook("preHandler", async (req, reply) =>
     router(req, reply, config)
   );

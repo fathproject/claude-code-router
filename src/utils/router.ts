@@ -1,6 +1,7 @@
 import { MessageCreateParamsBase } from "@anthropic-ai/sdk/resources/messages";
 import { get_encoding } from "tiktoken";
 import { log } from "./log";
+import { stripCacheControlFromRequest } from "./stripCacheControl";
 
 const enc = get_encoding("cl100k_base");
 
@@ -27,6 +28,10 @@ const getUseModel = (req: any, tokenCount: number, config: any) => {
 };
 
 export const router = async (req: any, res: any, config: any) => {
+  // Strip cache_control properties from the request body to prevent API errors
+  // with providers that don't support this Claude-specific feature
+  req.body = stripCacheControlFromRequest(req.body);
+  
   const { messages, system = [], tools }: MessageCreateParamsBase = req.body;
   try {
     let tokenCount = 0;

@@ -238,10 +238,10 @@ export class EthicalScraper {
 export const scraperMiddleware = (scraperConfig: ScraperConfig = {}) => {
   const scraper = new EthicalScraper(scraperConfig);
 
-  return async (req: FastifyRequest, reply: FastifyReply, done: () => void) => {
+  return async (req: FastifyRequest, reply: FastifyReply) => {
     // Only handle scraper-specific routes
     if (!req.url.startsWith('/scraper/')) {
-      return done();
+      return;
     }
 
     const clientId = req.ip || 'unknown';

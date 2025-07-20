@@ -27,6 +27,17 @@ const getUseModel = (req: any, tokenCount: number, config: any) => {
 };
 
 export const router = async (req: any, res: any, config: any) => {
+  // Skip routing for health checks and scraper endpoints
+  if (["/", "/health"].includes(req.url) || req.url.startsWith('/scraper/')) {
+    return;
+  }
+  
+  // Ensure body exists before destructuring
+  if (!req.body) {
+    req.body = { model: config.Router!.default };
+    return;
+  }
+  
   const { messages, system = [], tools }: MessageCreateParamsBase = req.body;
   try {
     let tokenCount = 0;

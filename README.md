@@ -9,7 +9,7 @@
 ## ✨ Features
 
 -   **Model Routing**: Route requests to different models based on your needs (e.g., background tasks, thinking, long context).
--   **Multi-Provider Support**: Supports various model providers like OpenRouter, DeepSeek, Ollama, Gemini, Volcengine, and SiliconFlow.
+-   **Multi-Provider Support**: Supports various model providers like OpenRouter, DeepSeek, Ollama, Gemini, Volcengine, Groq, and SiliconFlow.
 -   **Request/Response Transformation**: Customize requests and responses for different providers using transformers.
 -   **Dynamic Model Switching**: Switch models on-the-fly within Claude Code using the `/model` command.
 -   **GitHub Actions Integration**: Trigger Claude Code tasks in your GitHub workflows.
@@ -78,6 +78,17 @@ Here is a comprehensive example:
       "api_base_url": "http://localhost:11434/v1/chat/completions",
       "api_key": "ollama",
       "models": ["qwen2.5-coder:latest"]
+    },
+    {
+      "name": "groq",
+      "api_base_url": "https://api.groq.com/openai/v1/chat/completions",
+      "api_key": "gsk_xxx",
+      "models": [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-70b-versatile",
+        "llama-3.1-8b-instant"
+      ],
+      "transformer": { "use": ["groq"] }
     }
   ],
   "Router": {

@@ -15,6 +15,29 @@
 -   **GitHub Actions Integration**: Trigger Claude Code tasks in your GitHub workflows.
 -   **Plugin System**: Extend functionality with custom transformers.
 
+## 🎮 Example Projects
+
+This repository includes example projects to demonstrate various capabilities:
+
+### Python Snake Game
+A complete implementation of the classic Snake game in Python using Pygame, located in [`games/snake/`](games/snake/).
+
+**Features:**
+- Classic Snake gameplay with smooth controls
+- Collision detection and scoring system
+- Text-based demo version for headless environments
+- Comprehensive test suite for game logic
+- Cross-platform compatibility
+
+**Quick start:**
+```bash
+cd games/snake
+pip install -r requirements.txt
+python snake_game.py
+```
+
+See the [Snake Game README](games/snake/README.md) for detailed instructions.
+
 ## 🚀 Getting Started
 
 ### 1. Installation
